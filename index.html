@@ -25,7 +25,7 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 200px;
+            width: 220px;
             height: 100%;
             background-color: #582222;
             padding: 20px;
@@ -33,6 +33,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: all 0.3s ease;
         }
         
         .coluna .logo {
@@ -68,10 +69,11 @@
         
         main {
             flex: 1;
-            margin-left: 220px;
+            margin-left: 240px;
             padding: 20px;
+            transition: margin-left 0.3s ease;
         }
-        /* ===== LOGIN DISCRETO NA COLUNA ===== */
+        /* ===== LOGIN/CADASTRO ===== */
         
         .login-lateral {
             background-color: #fff0f0;
@@ -83,11 +85,10 @@
             font-size: 14px;
         }
         
-        .login-lateral input[type="text"],
-        .login-lateral input[type="password"] {
+        .login-lateral input {
             width: 90%;
-            padding: 5px;
-            margin: 5px 0;
+            padding: 7px;
+            margin: 6px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 14px;
@@ -95,7 +96,7 @@
         
         .login-lateral button {
             width: 95%;
-            padding: 5px;
+            padding: 7px;
             background-color: #582222;
             color: #fff;
             border: none;
@@ -123,7 +124,7 @@
             right: 20px;
             width: 60px;
             height: 60px;
-            background-color: #25D366;
+            background-color: #582222;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -153,6 +154,32 @@
             width: 100%;
             margin-top: auto;
         }
+        /* ===== RESPONSIVIDADE ===== */
+        
+        @media (max-width: 768px) {
+            .coluna {
+                position: relative;
+                width: 100%;
+                height: auto;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .coluna ul {
+                display: flex;
+                gap: 10px;
+            }
+            .coluna li {
+                margin: 0;
+            }
+            main {
+                margin-left: 0;
+            }
+            .login-lateral {
+                display: none;
+                /* pode virar popup em mobile */
+            }
+        }
     </style>
 </head>
 
@@ -173,17 +200,28 @@
             </ul>
         </div>
 
+        <!-- LOGIN / CADASTRO -->
         <div class="login-lateral" id="loginContainer">
             <form id="loginForm">
                 <input type="text" id="usuario" name="usuario" placeholder="Usuário" required>
                 <input type="password" id="senha" name="senha" placeholder="Senha" required>
                 <button type="submit">Entrar</button>
             </form>
+
+            <form id="cadastroForm" style="display:none; margin-top:10px;">
+                <input type="text" id="nomeCadastro" placeholder="Nome completo" required>
+                <input type="text" id="usuarioCadastro" placeholder="Usuário" required>
+                <input type="password" id="senhaCadastro" placeholder="Senha" required>
+                <button type="submit">Cadastrar</button>
+            </form>
+
             <div id="loginLinks" style="margin-top: 8px; text-align: center;">
                 <a href="#" id="cadastrarUsuario">Cadastrar</a> |
                 <a href="#" id="esqueciSenha">Esqueci a senha</a>
             </div>
-            <button id="sairBtn" style="display:none; margin-top:5px; width:95%; padding:5px; background:#81504B; color:#fff; border:none; border-radius:5px; cursor:pointer;">Sair</button>
+            <button id="sairBtn" style="display:none; margin-top:5px; width:95%; padding:5px; background:#81504B; color:#fff; border:none; border-radius:5px; cursor:pointer;">
+        Sair
+      </button>
         </div>
     </div>
 
@@ -198,65 +236,59 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 
-    <!-- SCRIPT PARA ALERTS E LOGIN -->
+    <!-- SCRIPT -->
     <script>
-        // Navegação da barra lateral
-        const links = ["inicio", "sobre", "servicos", "produtos", "contato"];
-        const mensagens = [
-            "Bem-vindo ao nosso site!",
-            "Nossa História",
-            "Nossos Serviços",
-            "Nossos Produtos",
-            "Entre em Contato Conosco"
-        ];
-        const urls = [
-            "index.html",
-            "Sobre.html",
-            "Servicos.html",
-            "Produtos.html",
-            "Contato.html"
-        ];
-        /
-
-        links.forEach((id, i) => {
-            document.getElementById(id).addEventListener("click", function(e) {
-                e.preventDefault();
-                alert(mensagens[i]);
-                window.location.href = urls[i];
-            });
+        // Troca entre Login e Cadastro
+        document.getElementById("cadastrarUsuario").addEventListener("click", function(e) {
+            e.preventDefault();
+            document.getElementById("loginForm").style.display = "none";
+            document.getElementById("cadastroForm").style.display = "block";
         });
 
-        // Login simples e armazenamento do nome
-        document.getElementById("loginForm").addEventListener("submit", function(e) {
+        // Login (simulação de banco de dados via fetch)
+        document.getElementById("loginForm").addEventListener("submit", async function(e) {
             e.preventDefault();
             const usuario = document.getElementById("usuario").value;
             const senha = document.getElementById("senha").value;
 
-            // Login fictício
-            if ((usuario === "Deivirte" && senha === "Joiciane") || usuario) {
+            // Aqui faria requisição real ao backend:
+            // const res = await fetch("/.netlify/functions/login", {...})
+            // mas deixo simulado:
+            if (usuario && senha) {
                 localStorage.setItem("nomeUsuario", usuario);
                 alert("Login realizado com sucesso!");
                 atualizarInterface();
             } else {
                 alert("Usuário ou senha incorretos!");
             }
-
-            this.reset();
         });
 
-        // Função para atualizar interface após login
+        // Cadastro (simulação de banco de dados via fetch)
+        document.getElementById("cadastroForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+            const nome = document.getElementById("nomeCadastro").value;
+            const usuario = document.getElementById("usuarioCadastro").value;
+            const senha = document.getElementById("senhaCadastro").value;
+
+            // Aqui faria requisição real ao backend:
+            // const res = await fetch("/.netlify/functions/register", {...})
+            alert(`Usuário ${nome} cadastrado com sucesso!`);
+            document.getElementById("cadastroForm").reset();
+            document.getElementById("cadastroForm").style.display = "none";
+            document.getElementById("loginForm").style.display = "block";
+        });
+
+        // Atualiza interface
         function atualizarInterface() {
             const nome = localStorage.getItem("nomeUsuario");
             const main = document.querySelector("main");
             if (nome) {
-                main.innerHTML = `<h1>${nome}</h1>
-                          <p>Conteúdo principal da página...</p>`;
+                main.innerHTML = `<h1>${nome}</h1><p>Bem-vindo(a) ao portal!</p>`;
                 document.getElementById("loginForm").style.display = "none";
                 document.getElementById("loginLinks").style.display = "none";
                 document.getElementById("sairBtn").style.display = "block";
             } else {
-                main.innerHTML = `<h1>Estética Radiante</h1>
-                          <p>Aqui vai o conteúdo principal da página...</p>`;
+                main.innerHTML = `<h1>Estética Radiante</h1><p>Aqui vai o conteúdo principal da página...</p>`;
                 document.getElementById("loginForm").style.display = "block";
                 document.getElementById("loginLinks").style.display = "block";
                 document.getElementById("sairBtn").style.display = "none";
@@ -269,10 +301,7 @@
             atualizarInterface();
         });
 
-        // Exibe saudação ao carregar a página se já estiver logado
-        window.onload = function() {
-            atualizarInterface();
-        };
+        window.onload = atualizarInterface;
     </script>
 
     <!-- RODAPÉ -->
