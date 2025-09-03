@@ -7,8 +7,6 @@
     <title>Estética Radiante - Sobre</title>
     <link rel="icon" href="logo.ico" type="image/x-icon">
     <style>
-        /* RESET BÁSICO */
-        
         * {
             margin: 0;
             padding: 0;
@@ -21,10 +19,9 @@
             color: #582222;
             display: flex;
             flex-direction: row;
-            /* para menu lateral e main */
             min-height: 100vh;
         }
-        /* MENU LATERAL */
+        /* ===== MENU LATERAL / TOPO ===== */
         
         .coluna {
             position: fixed;
@@ -34,6 +31,7 @@
             height: 100%;
             background-color: #582222;
             padding: 20px;
+            transition: all 0.3s ease-in-out;
         }
         
         .coluna .logo {
@@ -63,14 +61,13 @@
             background-color: #81504B;
             color: #F0D7D0;
         }
-        /* CONTEÚDO PRINCIPAL */
+        /* ===== CONTEÚDO PRINCIPAL ===== */
         
         main {
             margin-left: 220px;
             padding: 20px;
             flex: 1;
             padding-bottom: 120px;
-            /* espaço para rodapé fixo */
         }
         
         .card-texto {
@@ -90,12 +87,7 @@
             margin-bottom: 20px;
             font-family: Georgia, serif;
         }
-        
-        .card-texto p {
-            text-align: justify;
-            color: #582222;
-        }
-        /* LOGIN LATERAL */
+        /* ===== LOGIN ===== */
         
         .login-lateral {
             background-color: #fff0f0;
@@ -110,32 +102,33 @@
         .login-lateral input[type="text"],
         .login-lateral input[type="password"] {
             width: 90%;
-            padding: 5px;
-            margin: 5px 0;
+            padding: 8px;
+            margin: 6px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
+            font-size: 16px;
         }
         
         .login-lateral button {
             width: 95%;
-            padding: 5px;
+            padding: 8px;
             background-color: #582222;
             color: #fff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 5px;
+            margin-top: 6px;
+            font-size: 16px;
         }
         
         .login-lateral button:hover {
             background-color: #81504B;
         }
-        /* WHATSAPP FIXO */
+        /* ===== WHATSAPP FIXO ===== */
         
         #whatsapp-fixo {
             position: fixed;
             bottom: 80px;
-            /* acima do rodapé */
             right: 20px;
             width: 60px;
             height: 60px;
@@ -152,7 +145,7 @@
             width: 35px;
             height: 35px;
         }
-        /* RODAPÉ FIXO */
+        /* ===== RODAPÉ ===== */
         
         .rodape {
             position: fixed;
@@ -174,6 +167,42 @@
             background: #fff0f0;
             border-radius: 5px;
             min-height: 30px;
+            text-align: center;
+        }
+        /* ===== RESPONSIVO ===== */
+        
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            .coluna {
+                position: relative;
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            main {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+            .coluna .logo {
+                width: 50px;
+                margin-bottom: 10px;
+            }
+            .coluna ul {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .coluna li {
+                margin: 10px;
+            }
+            .login-lateral {
+                max-width: 300px;
+                margin: 15px auto;
+            }
         }
     </style>
 </head>
@@ -211,10 +240,10 @@
         <div class="card-texto">
             <div id="mensagemCaixa"></div>
             <h1>Estética Radiante</h1>
-            <p>A Estética Radiante nasceu do sonho de transformar a autoestima das pessoas, oferecendo um espaço acolhedor, moderno e de confiança...</p>
+            <p>A Estética Radiante nasceu do sonho de transformar a autoestima das pessoas...</p>
             <p>Desde o início, acreditamos que a verdadeira beleza vem do equilíbrio entre saúde, cuidado pessoal e confiança...</p>
-            <p>Cada atendimento é pensado de forma personalizada, respeitando as necessidades, desejos e singularidade de cada cliente...</p>
-            <p>Hoje, a Estética Radiante é referência em tratamentos faciais e corporais, conquistando clientes que confiam em nosso trabalho...</p>
+            <p>Cada atendimento é pensado de forma personalizada, respeitando as necessidades e desejos de cada cliente...</p>
+            <p>Hoje, a Estética Radiante é referência em tratamentos faciais e corporais...</p>
         </div>
     </main>
 
@@ -226,6 +255,7 @@
     <script>
         const mensagemCaixa = document.getElementById("mensagemCaixa");
 
+        // Navegação com alerta antes de trocar página
         const links = ["inicio", "sobre", "servicos", "produtos", "contato"];
         const mensagens = [
             "Bem-vindo ao nosso site!",
@@ -246,18 +276,35 @@
             });
         });
 
-        document.getElementById("loginForm").addEventListener("submit", function(e) {
+        // ===== LOGIN COM BANCO (Netlify + Neon) =====
+        document.getElementById("loginForm").addEventListener("submit", async function(e) {
             e.preventDefault();
             const usuario = document.getElementById("usuario").value;
             const senha = document.getElementById("senha").value;
-            if ((usuario === "Deivirte" && senha === "Joiciane") || usuario) {
-                localStorage.setItem("nomeUsuario", usuario);
-                mensagemCaixa.textContent = `Login realizado com sucesso, ${usuario}!`;
-                atualizarInterface();
-            } else {
-                mensagemCaixa.textContent = "Usuário ou senha incorretos!";
+
+            try {
+                const res = await fetch("/.netlify/functions/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        usuario,
+                        senha
+                    })
+                });
+
+                const data = await res.json();
+                if (res.ok) {
+                    localStorage.setItem("nomeUsuario", data.nome);
+                    mensagemCaixa.textContent = `Login realizado com sucesso, ${data.nome}!`;
+                    atualizarInterface();
+                } else {
+                    mensagemCaixa.textContent = data.error || "Erro no login!";
+                }
+            } catch (err) {
+                mensagemCaixa.textContent = "Falha de conexão.";
             }
-            this.reset();
         });
 
         function atualizarInterface() {
@@ -282,7 +329,7 @@
         window.onload = atualizarInterface;
     </script>
 
-    <!-- RODAPÉ FIXO -->
+    <!-- RODAPÉ -->
     <footer class="rodape">
         <p>Todos os direitos deste site pertencem <br> © Estética Radiante</p>
         <p>Av. Duquesa de Goiás, 540 - São Paulo, SP</p>

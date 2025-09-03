@@ -13,11 +13,8 @@
             color: #582222;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
         }
-        /* ===== MENU LATERAL ===== */
+        /* Menu lateral */
         
         .coluna {
             position: fixed;
@@ -59,105 +56,147 @@
             background-color: #81504B;
             color: #F0D7D0;
         }
-        /* ===== CONTEÚDO PRINCIPAL ===== */
+        /* Login lateral */
+        
+        .login-lateral {
+            background-color: #fff0f0;
+            padding: 10px;
+            border-radius: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+        
+        .login-lateral input[type="text"],
+        .login-lateral input[type="password"] {
+            width: 90%;
+            padding: 5px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        .login-lateral button {
+            width: 95%;
+            padding: 5px;
+            background-color: #582222;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+        
+        .login-lateral button:hover {
+            background-color: #81504B;
+        }
+        /* Conteúdo principal */
         
         main {
-            flex: 1;
             margin-left: 220px;
             padding: 20px;
+            padding-bottom: 150px;
         }
         
-        main input,
-        main textarea {
-            width: 100%;
-            padding: 12px 15px;
-            margin-top: 8px;
+        h1 {
             margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 12px;
+        }
+        /* Formulário de contato */
+        
+        .form-contato {
             background-color: #fff5f2;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            color: #582222;
+            padding: 25px;
+            border-radius: 12px;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         
-        main input:focus,
-        main textarea:focus {
-            outline: none;
-            border-color: #81504B;
-            box-shadow: 0 4px 8px rgba(129, 80, 75, 0.3);
-            background-color: #fff0ec;
+        .form-contato label {
+            display: block;
+            margin: 15px 0 5px;
         }
         
-        main button {
-            padding: 12px 25px;
+        .form-contato input,
+        .form-contato textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        
+        .form-contato textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .form-contato button {
+            margin-top: 15px;
+            padding: 10px 15px;
             background: linear-gradient(135deg, #81504B, #582222);
             color: #fff;
             border: none;
             border-radius: 12px;
-            font-size: 16px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+            transition: 0.3s;
         }
         
-        main button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        .form-contato button:hover {
             background: linear-gradient(135deg, #582222, #81504B);
         }
-        /* ===== BOTÃO FIXO WHATSAPP ===== */
         
-        #whatsapp-fixo {
+        #mensagemStatus {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        /* WhatsApp fixo */
+        
+        .whatsapp-fixo {
             position: fixed;
             bottom: 20px;
             right: 20px;
             width: 60px;
             height: 60px;
-            background-color: #25D366;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            transition: all 0.3s;
+            z-index: 10000;
         }
         
-        #whatsapp-fixo:hover {
-            transform: scale(1.1);
+        .whatsapp-fixo img {
+            width: 100%;
+            height: 100%;
         }
-        
-        #whatsapp-fixo img {
-            width: 35px;
-            height: 35px;
-        }
-        /* ===== RODAPÉ ===== */
         
         .rodape {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
             background-color: #582222;
             color: #ffffff;
             text-align: center;
             padding: 15px 0;
             font-size: 14px;
             font-style: italic;
-            width: 100%;
-            margin-top: auto;
+            z-index: 1000;
         }
-        /* ===== CONFIRMAÇÃO ===== */
         
-        #confirmacao {
-            color: green;
-            font-weight: bold;
-            margin-bottom: 20px;
-            display: none;
+        @media(max-width:600px) {
+            main {
+                margin-left: 0;
+                padding: 15px;
+            }
+            .coluna {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- MENU LATERAL -->
+    <!-- Menu lateral -->
     <div class="coluna">
         <a href="index.html">
             <img src="logo.jpg" alt="Logo" class="logo">
@@ -166,69 +205,131 @@
             <li><a href="index.html" id="inicio">Início</a></li>
             <li><a href="Sobre.html" id="sobre">Sobre</a></li>
             <li><a href="Servicos.html" id="servicos">Serviços</a></li>
-            <li><a href="Produtos.html" id="produtos">Produtos</a></li>
+            <li><a href="Produtos.html" id="produtos-menu">Produtos</a></li>
             <li><a href="Contato.html" id="contato">Contato</a></li>
         </ul>
+
+        <div class="login-lateral" id="loginContainer">
+            <form id="loginForm">
+                <input type="text" id="usuario" placeholder="Usuário" required>
+                <input type="password" id="senha" placeholder="Senha" required>
+                <button type="submit">Entrar</button>
+            </form>
+            <div id="loginLinks" style="margin-top: 8px; text-align: center;">
+                <a href="#" id="cadastrarUsuario">Cadastrar</a> |
+                <a href="#" id="esqueciSenha">Esqueci a senha</a>
+            </div>
+            <button id="sairBtn" style="display:none;">Sair</button>
+        </div>
     </div>
 
-    <!-- CONTEÚDO PRINCIPAL -->
+    <!-- Conteúdo principal -->
     <main>
-        <h1>Entre em Contato</h1>
-        <p id="confirmacao">Mensagem enviada com sucesso!</p>
-        <p><input type="text" id="nome" placeholder="Digite seu nome"></p>
-        <p><input type="email" id="email" placeholder="Digite seu email"></p>
-        <p><textarea id="mensagem" placeholder="Digite sua mensagem"></textarea></p>
-        <button id="enviar">Enviar</button>
+        <h1>Contato</h1>
+        <p id="bemVindoUsuario" style="font-weight:bold; margin-bottom:20px;"></p>
+
+        <div class="form-contato">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" placeholder="Seu nome" required>
+
+            <label for="email">Email:</label>
+            <input type="text" id="email" placeholder="Seu email" required>
+
+            <label for="mensagem">Mensagem:</label>
+            <textarea id="mensagem" placeholder="Digite sua mensagem" required></textarea>
+
+            <button id="enviar">Enviar Mensagem</button>
+            <div id="mensagemStatus"></div>
+        </div>
     </main>
 
-    <!-- BOTÃO FIXO WHATSAPP -->
-    <a href="https://wa.me/5511985425667" target="_blank" id="whatsapp-fixo">
+    <a href="https://wa.me/5511985425667" target="_blank" class="whatsapp-fixo">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 
-    <!-- SCRIPT -->
     <script>
-        const links = ["inicio", "sobre", "servicos", "produtos", "contato"];
-        const mensagens = [
-            "Bem-vindo ao nosso site!",
-            "Nossa História",
-            "Nossos Serviços",
-            "Nossos Produtos",
-            "Entre em Contato Conosco"
-        ];
-        const urls = ["index.html", "Sobre.html", "Servicos.html", "Produtos.html", "Contato.html"];
+        // Login lateral
+        const loginForm = document.getElementById("loginForm");
+        const sairBtn = document.getElementById("sairBtn");
+        const bemVindoUsuario = document.getElementById("bemVindoUsuario");
 
-        links.forEach((id, i) => {
-            document.getElementById(id).addEventListener("click", function(e) {
-                e.preventDefault();
-                alert(mensagens[i]);
-                window.location.href = urls[i];
-            });
+        function atualizarInterface() {
+            const usuario = localStorage.getItem("nomeUsuario");
+            if (usuario) {
+                loginForm.style.display = "none";
+                document.getElementById("loginLinks").style.display = "none";
+                sairBtn.style.display = "block";
+                bemVindoUsuario.textContent = `Bem-vindo(a), ${usuario}!`;
+            } else {
+                loginForm.style.display = "block";
+                document.getElementById("loginLinks").style.display = "block";
+                sairBtn.style.display = "none";
+                bemVindoUsuario.textContent = '';
+            }
+        }
+
+        loginForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const usuario = document.getElementById("usuario").value;
+            if (usuario) {
+                localStorage.setItem("nomeUsuario", usuario);
+                atualizarInterface();
+                alert(`Bem-vindo(a), ${usuario}!`);
+            } else {
+                alert("Usuário ou senha incorretos!");
+            }
+            this.reset();
         });
 
-        document.getElementById("enviar").addEventListener("click", function() {
-            const nome = document.getElementById("nome").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const mensagem = document.getElementById("mensagem").value.trim();
-            const confirmacao = document.getElementById("confirmacao");
+        sairBtn.addEventListener("click", () => {
+            localStorage.removeItem("nomeUsuario");
+            atualizarInterface();
+            alert("Você saiu da conta.");
+        });
 
-            if (nome && email && mensagem) {
-                alert(`Obrigado, ${nome}! Sua mensagem foi enviada.`);
-                confirmacao.style.display = "block";
-                // Limpa campos
-                document.getElementById("nome").value = "";
-                document.getElementById("email").value = "";
-                document.getElementById("mensagem").value = "";
-                setTimeout(() => confirmacao.style.display = "none", 5000);
-            } else {
-                alert("Por favor, preencha todos os campos.");
+        window.onload = atualizarInterface;
+
+        // Envio de mensagem
+        document.getElementById("enviar").addEventListener("click", function() {
+            const nome = document.getElementById("nome").value;
+            const email = document.getElementById("email").value;
+            const mensagem = document.getElementById("mensagem").value;
+
+            if (!nome || !email || !mensagem) {
+                alert("Preencha todos os campos.");
+                return;
             }
+
+            // Chamada POST para backend que enviará o email
+            fetch("https://seu-backend.com/enviar-email", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        remetente: "deivirte9@gmail.com",
+                        destinatario: "deivirte@gmail.com",
+                        nome: nome,
+                        email: email,
+                        mensagem: mensagem
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById("mensagemStatus").textContent = "Mensagem enviada com sucesso!";
+                })
+                .catch(err => {
+                    document.getElementById("mensagemStatus").textContent = "Erro ao enviar mensagem.";
+                });
+
+            document.getElementById("nome").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("mensagem").value = "";
         });
     </script>
 
-    <!-- RODAPÉ -->
     <footer class="rodape">
-        <p>Todos os direitos deste site pertencem <br>© Estética Radiante</p>
+        <p>Todos os direitos deste site pertencem <br> © Estética Radiante</p>
         <p>Av. Duquesa de Goiás, 540 - São Paulo, SP</p>
     </footer>
 </body>

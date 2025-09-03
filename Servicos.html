@@ -14,7 +14,7 @@
             margin: 0;
             padding: 0;
         }
-        /* Menu lateral */
+        /* MENU LATERAL */
         
         .coluna {
             position: fixed;
@@ -56,12 +56,12 @@
             background-color: #81504B;
             color: #F0D7D0;
         }
-        /* Login lateral */
+        /* LOGIN LATERAL */
         
         .login-lateral {
-            background-color: #fff0f0;
-            padding: 10px;
-            border-radius: 8px;
+            background-color: #fff5f2;
+            padding: 15px;
+            border-radius: 12px;
             width: 100%;
             box-sizing: border-box;
             text-align: center;
@@ -80,19 +80,26 @@
         
         .login-lateral button {
             width: 95%;
-            padding: 5px;
+            padding: 8px;
             background-color: #582222;
             color: #fff;
             border: none;
-            border-radius: 5px;
+            border-radius: 12px;
             cursor: pointer;
-            margin-top: 5px;
+            margin-top: 8px;
+            transition: background 0.3s;
         }
         
         .login-lateral button:hover {
             background-color: #81504B;
         }
-        /* Conteúdo principal */
+        
+        .saldo-lateral {
+            margin: 10px 0;
+            font-weight: bold;
+            color: #582222;
+        }
+        /* CONTEÚDO PRINCIPAL */
         
         main {
             margin-left: 220px;
@@ -138,6 +145,8 @@
             padding: 6px;
             border-radius: 8px;
             border: 1px solid #ccc;
+            accent-color: #582222;
+            color: #582222;
         }
         
         .card button {
@@ -181,28 +190,38 @@
             font-weight: bold;
         }
         
-        #pix {
+        #pix,
+        #cartao,
+        #recarga {
             margin-top: 20px;
             padding: 15px 25px;
-            background: #582222;
+            background: linear-gradient(135deg, #81504B, #582222);
             color: white;
             border: none;
             border-radius: 12px;
             cursor: pointer;
             font-size: 16px;
             transition: 0.3s;
+            margin-right: 10px;
         }
         
-        #pix:hover {
-            background: #81504B;
+        #pix:hover,
+        #cartao:hover,
+        #recarga:hover {
+            background: linear-gradient(135deg, #582222, #81504B);
         }
         
-        #qr-container {
+        #qr-container,
+        #card-container,
+        #recarga-container {
             margin-top: 15px;
             display: none;
             text-align: center;
+            background-color: #fff5f2;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        /* WhatsApp fixo */
         
         .whatsapp-fixo {
             position: fixed;
@@ -231,20 +250,36 @@
             font-style: italic;
             z-index: 1000;
         }
+        
+        @media(max-width: 768px) {
+            main {
+                margin-left: 0;
+                padding: 10px;
+            }
+            .cards {
+                flex-direction: column;
+                width: 100%;
+            }
+            .card {
+                width: 100%;
+            }
+            .coluna {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="coluna">
-        <a href="index.html">
-            <img src="logo.jpg" alt="Logo" class="logo">
-        </a>
+        <a href="index.html"><img src="logo.jpg" alt="Logo" class="logo"></a>
         <ul>
             <li><a href="index.html" id="inicio">Início</a></li>
             <li><a href="Sobre.html" id="sobre">Sobre</a></li>
-            <li><a href="Servicos.html" id="servicos">Serviços</a></li>
+            <li><a href="Servicos.html" id="servicos-menu">Serviços</a></li>
             <li><a href="Produtos.html" id="produtos-menu">Produtos</a></li>
-            <li><a href="Contato.html" id="contato">Contato</a></li>
         </ul>
 
         <div class="login-lateral" id="loginContainer">
@@ -253,6 +288,9 @@
                 <input type="password" id="senha" placeholder="Senha" required>
                 <button type="submit">Entrar</button>
             </form>
+            <div class="saldo-lateral">
+                Saldo: R$ <span id="saldoUsuario">0,00</span>
+            </div>
             <div id="loginLinks" style="margin-top: 8px; text-align: center;">
                 <a href="#" id="cadastrarUsuario">Cadastrar</a> |
                 <a href="#" id="esqueciSenha">Esqueci a senha</a>
@@ -275,7 +313,7 @@
                 <button>Agendar Serviço</button>
             </div>
             <div class="card" data-nome="Massagem Relaxante" data-preco="90">
-                <img src="Massagem.jpg" alt="Massagem">
+                <img src="massagem.jpg" alt="Massagem">
                 <h3>Massagem Relaxante</h3>
                 <p>R$ 90,00</p>
                 <label>Data: <input type="date"></label><br>
@@ -307,137 +345,184 @@
                     </tr>
                 </tfoot>
             </table>
+
+            <button id="recarga">Recarregar Saldo</button>
             <button id="pix">Pagar com PIX</button>
+            <button id="cartao">Pagar com Cartão</button>
+
+            <div id="recarga-container">
+                <label>Valor da Recarga: R$ <input type="number" id="valorRecarga" min="1" value="0"></label>
+                <button id="recarga-pagar">Pagar Recarga</button>
+            </div>
+
             <div id="qr-container">
                 <p>Escaneie o QR Code para pagar:</p>
                 <img id="qr-code" src="" alt="QR Code PIX">
             </div>
+
+            <div id="card-container">
+                <p>Formulário de pagamento com cartão:</p>
+                <div id="card-element"></div>
+                <button id="card-pagar">Pagar</button>
+            </div>
         </section>
-    </main>
 
-    <a href="https://wa.me/5511985425667" target="_blank" class="whatsapp-fixo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    </a>
+        <a href="https://wa.me/5511985425667" target="_blank" class="whatsapp-fixo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+        </a>
 
-    <script>
-        // Login lateral
-        const loginForm = document.getElementById("loginForm");
-        const sairBtn = document.getElementById("sairBtn");
-        const bemVindoUsuario = document.getElementById("bemVindoUsuario");
+        <script src="https://sdk.mercadopago.com/js/v2"></script>
+        <script>
+            const MERCADO_PAGO_PUBLIC_KEY = "APP_USR-657e99c5-3e6c-403f-999b-4b405b96aad6";
 
-        function atualizarInterface() {
-            const usuario = localStorage.getItem("nomeUsuario");
-            if (usuario) {
-                loginForm.style.display = "none";
-                document.getElementById("loginLinks").style.display = "none";
-                sairBtn.style.display = "block";
-                bemVindoUsuario.textContent = `Bem-vindo(a), ${usuario}!`;
-            } else {
-                loginForm.style.display = "block";
-                document.getElementById("loginLinks").style.display = "block";
-                sairBtn.style.display = "none";
-                bemVindoUsuario.textContent = '';
-            }
-        }
+            // Login
+            const loginForm = document.getElementById("loginForm");
+            const sairBtn = document.getElementById("sairBtn");
+            const bemVindoUsuario = document.getElementById("bemVindoUsuario");
+            const saldoSpan = document.getElementById("saldoUsuario");
+            let saldoUsuario = 0;
 
-        loginForm.addEventListener("submit", function(e) {
-            e.preventDefault();
-            const usuario = document.getElementById("usuario").value;
-            if (usuario) {
-                localStorage.setItem("nomeUsuario", usuario);
-                atualizarInterface();
-            } else {
-                alert("Usuário ou senha incorretos!");
-            }
-            this.reset();
-        });
-
-        sairBtn.addEventListener("click", () => {
-            localStorage.removeItem("nomeUsuario");
-            atualizarInterface();
-            alert("Você saiu da conta.");
-        });
-
-        window.onload = atualizarInterface;
-
-        // Carrinho de serviços
-        const carrinho = [];
-        const buttons = document.querySelectorAll(".card button");
-        const carrinhoCorpo = document.getElementById("carrinho-corpo");
-        const totalGeral = document.getElementById("total-geral");
-        const btnPix = document.getElementById("pix");
-        const qrContainer = document.getElementById("qr-container");
-        const qrCode = document.getElementById("qr-code");
-
-        function atualizarCarrinho() {
-            carrinhoCorpo.innerHTML = "";
-            let total = 0;
-            if (carrinho.length === 0) {
-                carrinhoCorpo.innerHTML = `<tr><td colspan="4">Nenhum serviço agendado.</td></tr>`;
-            } else {
-                carrinho.forEach(item => {
-                    total += item.preco;
-                    const linha = document.createElement("tr");
-                    linha.innerHTML = `
-                        <td>${item.nome}</td>
-                        <td>${item.data}</td>
-                        <td>${item.hora}</td>
-                        <td>R$ ${item.preco.toFixed(2)}</td>
-                    `;
-                    carrinhoCorpo.appendChild(linha);
-                });
-            }
-            totalGeral.textContent = `R$ ${total.toFixed(2)}`;
-        }
-
-        buttons.forEach(btn => {
-            btn.addEventListener("click", () => {
+            function atualizarInterface() {
                 const usuario = localStorage.getItem("nomeUsuario");
-                if (!usuario) {
-                    alert("Faça login para agendar serviços.");
-                    return;
+                if (usuario) {
+                    loginForm.style.display = "none";
+                    document.getElementById("loginLinks").style.display = "none";
+                    sairBtn.style.display = "block";
+                    bemVindoUsuario.textContent = `Bem-vindo(a), ${usuario}!`;
+                } else {
+                    loginForm.style.display = "block";
+                    document.getElementById("loginLinks").style.display = "block";
+                    sairBtn.style.display = "none";
+                    bemVindoUsuario.textContent = '';
                 }
-                const card = btn.parentElement;
-                const nome = card.dataset.nome;
-                const preco = parseFloat(card.dataset.preco);
-                const data = card.querySelector('input[type="date"]').value;
-                const hora = card.querySelector('input[type="time"]').value;
-
-                if (!data || !hora) {
-                    alert("Selecione data e hora para agendar o serviço.");
-                    return;
-                }
-
-                carrinho.push({
-                    nome,
-                    preco,
-                    data,
-                    hora
-                });
-                atualizarCarrinho();
-                alert(`${nome} agendado com sucesso para ${data} às ${hora}.`);
-            });
-        });
-
-        btnPix.addEventListener("click", () => {
-            if (carrinho.length === 0) {
-                alert("Agende um serviço antes de pagar.");
-                return;
+                saldoSpan.textContent = saldoUsuario.toFixed(2);
             }
-            let total = carrinho.reduce((sum, item) => sum + item.preco, 0);
-            const chavePIX = "42191577865";
-            const valorPIX = total.toFixed(2);
-            const pixString = `00020126580014br.gov.bcb.pix0137${chavePIX}520400005303986540${valorPIX.replace('.', '')}5802BR5913Estética Radiante6009São Paulo6304`;
-            const qrUrl = `https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=${encodeURIComponent(pixString)}`;
-            qrCode.src = qrUrl;
-            qrContainer.style.display = "block";
-        });
-    </script>
 
-    <footer class="rodape">
-        <p>Todos os direitos deste site pertencem <br> © Estética Radiante</p>
-        <p>Av. Duquesa de Goiás, 540 - São Paulo, SP</p>
-    </footer>
+            loginForm.addEventListener("submit", e => {
+                e.preventDefault();
+                const usuario = document.getElementById("usuario").value;
+                if (usuario) {
+                    localStorage.setItem("nomeUsuario", usuario);
+                    atualizarInterface();
+                } else alert("Usuário ou senha incorretos!");
+                loginForm.reset();
+            });
+
+            sairBtn.addEventListener("click", () => {
+                localStorage.removeItem("nomeUsuario");
+                atualizarInterface();
+            });
+
+            // Carrinho e pagamentos
+            let carrinho = [];
+            const buttons = document.querySelectorAll(".card button");
+            const carrinhoCorpo = document.getElementById("carrinho-corpo");
+            const totalGeral = document.getElementById("total-geral");
+            const btnPix = document.getElementById("pix");
+            const btnCartao = document.getElementById("cartao");
+            const btnRecarga = document.getElementById("recarga");
+            const recargaContainer = document.getElementById("recarga-container");
+            const valorRecarga = document.getElementById("valorRecarga");
+            const recargaPagar = document.getElementById("recarga-pagar");
+            const qrContainer = document.getElementById("qr-container");
+            const qrCode = document.getElementById("qr-code");
+            const cardContainer = document.getElementById("card-container");
+
+            function atualizarCarrinho() {
+                carrinhoCorpo.innerHTML = "";
+                let total = 0;
+                if (carrinho.length === 0) {
+                    carrinhoCorpo.innerHTML = `<tr><td colspan="4">Nenhum serviço agendado.</td></tr>`;
+                } else {
+                    carrinho.forEach(item => {
+                        total += item.preco;
+                        const linha = document.createElement("tr");
+                        linha.innerHTML = `<td>${item.nome}</td><td>${item.data}</td><td>${item.hora}</td><td>R$ ${item.preco.toFixed(2)}</td>`;
+                        carrinhoCorpo.appendChild(linha);
+                    });
+                }
+                totalGeral.textContent = `R$ ${total.toFixed(2)}`;
+            }
+
+            buttons.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const usuario = localStorage.getItem("nomeUsuario");
+                    if (!usuario) {
+                        alert("Faça login para agendar serviços.");
+                        return;
+                    }
+                    const card = btn.parentElement;
+                    const nome = card.dataset.nome;
+                    const preco = parseFloat(card.dataset.preco);
+                    const data = card.querySelector('input[type="date"]').value;
+                    const hora = card.querySelector('input[type="time"]').value;
+                    if (!data || !hora) {
+                        alert("Selecione data e hora.");
+                        return;
+                    }
+                    if (saldoUsuario < preco) {
+                        alert("Saldo insuficiente. Recarregue.");
+                        return;
+                    }
+                    carrinho.push({
+                        nome,
+                        preco,
+                        data,
+                        hora
+                    });
+                    saldoUsuario -= preco;
+                    atualizarCarrinho();
+                    atualizarInterface();
+                    alert(`${nome} agendado para ${data} às ${hora}.`);
+                });
+            });
+
+            // RECARGA
+            btnRecarga.addEventListener("click", () => {
+                recargaContainer.style.display = recargaContainer.style.display === "block" ? "none" : "block";
+            });
+            recargaPagar.addEventListener("click", () => {
+                const valor = parseFloat(valorRecarga.value);
+                if (valor > 0) {
+                    saldoUsuario += valor;
+                    atualizarInterface();
+                    alert(`R$ ${valor.toFixed(2)} adicionados!`);
+                    valorRecarga.value = 0;
+                    recargaContainer.style.display = "none";
+                } else alert("Informe valor válido.");
+            });
+
+            // PIX
+            btnPix.addEventListener("click", () => {
+                if (carrinho.length === 0) {
+                    alert("Agende serviço antes de pagar.");
+                    return;
+                }
+                const total = carrinho.reduce((sum, i) => sum + i.preco, 0);
+                const chavePIX = "42191577865";
+                const pixString = `00020126580014br.gov.bcb.pix0137${chavePIX}520400005303986540${total.toFixed(0)}5802BR5913Estética Radiante6009São Paulo6304`;
+                const qrUrl = `https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=${encodeURIComponent(pixString)}`;
+                qrCode.src = qrUrl;
+                qrContainer.style.display = "block";
+                cardContainer.style.display = "none";
+                saldoUsuario -= total;
+                carrinho = [];
+                atualizarCarrinho();
+                atualizarInterface();
+            });
+
+            // CARTÃO
+            btnCartao.addEventListener("click", () => {
+                cardContainer.style.display = "block";
+                qrContainer.style.display = "none";
+            });
+            window.onload = atualizarInterface;
+        </script>
+
+        <footer class="rodape">
+            <p>Todos os direitos deste site pertencem <br> © Estética Radiante</p>
+            <p>Av. Duquesa de Goiás, 540 - São Paulo, SP</p>
+        </footer>
 </body>
 
 </html>
