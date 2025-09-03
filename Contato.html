@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estética Radiante - Contato</title>
+    <link rel="icon" href="logo.ico" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F0D7D0;
+            color: #582222;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        /* ===== MENU LATERAL ===== */
+        
+        .coluna {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 100%;
+            background-color: #582222;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .coluna .logo {
+            width: 60px;
+            display: block;
+            margin-bottom: 20px;
+        }
+        
+        .coluna ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .coluna li {
+            margin: 15px 0;
+        }
+        
+        .coluna a {
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            padding: 8px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .coluna a:hover {
+            background-color: #81504B;
+            color: #F0D7D0;
+        }
+        /* ===== CONTEÚDO PRINCIPAL ===== */
+        
+        main {
+            flex: 1;
+            margin-left: 220px;
+            padding: 20px;
+        }
+        
+        main input,
+        main textarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin-top: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            background-color: #fff5f2;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            color: #582222;
+        }
+        
+        main input:focus,
+        main textarea:focus {
+            outline: none;
+            border-color: #81504B;
+            box-shadow: 0 4px 8px rgba(129, 80, 75, 0.3);
+            background-color: #fff0ec;
+        }
+        
+        main button {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #81504B, #582222);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+        }
+        
+        main button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #582222, #81504B);
+        }
+        /* ===== BOTÃO FIXO WHATSAPP ===== */
+        
+        #whatsapp-fixo {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+        
+        #whatsapp-fixo:hover {
+            transform: scale(1.1);
+        }
+        
+        #whatsapp-fixo img {
+            width: 35px;
+            height: 35px;
+        }
+        /* ===== RODAPÉ ===== */
+        
+        .rodape {
+            background-color: #582222;
+            color: #ffffff;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 14px;
+            font-style: italic;
+            width: 100%;
+            margin-top: auto;
+        }
+        /* ===== CONFIRMAÇÃO ===== */
+        
+        #confirmacao {
+            color: green;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- MENU LATERAL -->
+    <div class="coluna">
+        <a href="index.html">
+            <img src="logo.jpg" alt="Logo" class="logo">
+        </a>
+        <ul>
+            <li><a href="index.html" id="inicio">Início</a></li>
+            <li><a href="Sobre.html" id="sobre">Sobre</a></li>
+            <li><a href="Servicos.html" id="servicos">Serviços</a></li>
+            <li><a href="Produtos.html" id="produtos">Produtos</a></li>
+            <li><a href="Contato.html" id="contato">Contato</a></li>
+        </ul>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main>
+        <h1>Entre em Contato</h1>
+        <p id="confirmacao">Mensagem enviada com sucesso!</p>
+        <p><input type="text" id="nome" placeholder="Digite seu nome"></p>
+        <p><input type="email" id="email" placeholder="Digite seu email"></p>
+        <p><textarea id="mensagem" placeholder="Digite sua mensagem"></textarea></p>
+        <button id="enviar">Enviar</button>
+    </main>
+
+    <!-- BOTÃO FIXO WHATSAPP -->
+    <a href="https://wa.me/5511985425667" target="_blank" id="whatsapp-fixo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <!-- SCRIPT -->
+    <script>
+        const links = ["inicio", "sobre", "servicos", "produtos", "contato"];
+        const mensagens = [
+            "Bem-vindo ao nosso site!",
+            "Nossa História",
+            "Nossos Serviços",
+            "Nossos Produtos",
+            "Entre em Contato Conosco"
+        ];
+        const urls = ["index.html", "Sobre.html", "Servicos.html", "Produtos.html", "Contato.html"];
+
+        links.forEach((id, i) => {
+            document.getElementById(id).addEventListener("click", function(e) {
+                e.preventDefault();
+                alert(mensagens[i]);
+                window.location.href = urls[i];
+            });
+        });
+
+        document.getElementById("enviar").addEventListener("click", function() {
+            const nome = document.getElementById("nome").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const mensagem = document.getElementById("mensagem").value.trim();
+            const confirmacao = document.getElementById("confirmacao");
+
+            if (nome && email && mensagem) {
+                alert(`Obrigado, ${nome}! Sua mensagem foi enviada.`);
+                confirmacao.style.display = "block";
+                // Limpa campos
+                document.getElementById("nome").value = "";
+                document.getElementById("email").value = "";
+                document.getElementById("mensagem").value = "";
+                setTimeout(() => confirmacao.style.display = "none", 5000);
+            } else {
+                alert("Por favor, preencha todos os campos.");
+            }
+        });
+    </script>
+
+    <!-- RODAPÉ -->
+    <footer class="rodape">
+        <p>Todos os direitos deste site pertencem <br>© Estética Radiante</p>
+        <p>Av. Duquesa de Goiás, 540 - São Paulo, SP</p>
+    </footer>
+</body>
+
+</html>
