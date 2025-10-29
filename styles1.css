@@ -1,0 +1,23 @@
+                    /* Estilização do carousel */
+                    
+                    .carousel.slide {
+                        width: 70%;
+                        margin: 1px auto;
+                        height: 300px;
+                        opacity: 0.7;
+                        image-rendering: auto;
+                        border-radius: 15px;
+                        overflow: hidden;
+                        box-shadow: 0 4px 8px rgba(90, 50, 42, 0.1);
+                        transition: transform 0.3s, box-shadow 0.3s;
+                    }
+                    
+                    .carousel.slide:hover {
+                        transform: scale(1.02);
+                        box-shadow: 0 8px 16px rgb(90, 50, 42);
+                    }
+                    
+                    .carousel.slide .carousel-inner .carousel-item img:hover {
+                        transform: scale(1.05);
+                        box-shadow: 0 8px 16px rgb(255, 255, 255);
+                    }
