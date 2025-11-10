@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Metas de SEO e Open Graph -->
+    <meta name="description" content="Clínica Estética Radiante — tratamentos faciais e corporais personalizados, beleza natural e bem-estar em cada detalhe. Agende sua avaliação e descubra o seu brilho real.">
+
+    <!-- Open Graph para compartilhamento em redes sociais -->
+    <meta property="og:title" content="Estética Radiante | Beleza e Bem-Estar">
+    <meta property="og:description" content="Protocolos exclusivos de estética facial e corporal com resultados visíveis. A harmonia da sua beleza, em um só lugar.">
+    <meta property="og:image" content="https://esteticaradiante1.com.br/logo.png">
+    <meta property="og:url" content="https://esteticaradiante1.com.br/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+
+    <!-- Metas adicionais para buscadores -->
+    <meta name="keywords" content="estética, limpeza de pele, drenagem linfática, massagem relaxante, estética corporal, estética facial, clínica de beleza, bem-estar">
+    <meta name="author" content="Estética Radiante">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#AC796B">
+
+
+    <link rel="icon" type="image/x-icon" href="logo.ico" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Estética Radiante</title>
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+    <header id="inicio" class="logo text-center py-3" aria-labelledby="site-title">
+        <img src="img/logo.ico" alt="Logo Estética Radiante" />
+        <h1 id="site-title" class="est mb-1">Estética Radiante</h1>
+        <h2 class="cab h5">Clínica de Estética Corporal e Facial</h2>
+    </header>
+
+    <!-- Carrossel -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" aria-label="Galeria de destaque">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="carousel1.png" alt="Planta e velas aromáticas" loading="lazy">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="carousel2.png" alt="Mulher recebendo massagem relaxante" loading="lazy">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="carousel3.png" alt="Procedimento de limpeza de pele" loading="lazy">
+            </div>
+        </div>
+
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" aria-label="Anterior">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" aria-label="Próximo">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Próximo</span>
+        </a>
+    </div>
+
+    <!-- Menu -->
+    <!-- NAV -->
+    <nav class="menu" aria-label="Menu principal">
+        <div class="menu-bar">
+            <span style="font-weight:700;color:#fff"></span>
+            <button class="menu-toggle" aria-expanded="false" aria-controls="menu-list" id="menuToggle" aria-label="Abrir menu">
+        <span class="bars" aria-hidden="true">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </span>
+      </button>
+        </div>
+        <ul id="menu-list" aria-hidden="true">
+            <li><a href="#inicio" class="menu-link">Início</a></li>
+            <li class="dropdown">
+                <button class="dropbtn" aria-expanded="false">Cuidados</button>
+                <div class="dropdown-content" role="menu">
+                    <a href="#servicos" role="menuitem">Serviços</a>
+                    <hr style="margin:0;border:0;border-top:1px solid rgb(90,50,42);" />
+                    <a href="#produtos" role="menuitem">Produtos</a>
+                </div>
+            </li>
+            <li><a href="#depoimentos" class="menu-link">Depoimentos</a></li>
+            <li><a href="#contato" class="menu-link">Contato</a></li>
+            <li><a href="#sobre" class="menu-link">Sobre Nós</a></li>
+        </ul>
+    </nav>
+
+    <hr class="divisor" />
+
+
+    <!-- Seção: Serviços (carousel) -->
+    <section id="servicos" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-3">Serviços</h2>
+            <p class="text-center mb-4">Protocolos de alta performance para resultados reais — com técnica, beleza e bem‑estar.</p>
+
+            <div class="servi-carousel" aria-label="Carrossel de serviços">
+                <button class="servi-btn servi-prev" aria-label="Anterior" type="button">
+          <span aria-hidden="true">‹</span>
+        </button>
+
+                <div class="servi-track" id="serviTrack">
+                    <!-- Card 1 -->
+                    <article class="servi-card">
+                        <img src="relaxante.png" alt="Ritual Serenité" loading="lazy" class="servi-img" />
+                        <h5 class="servi-title">Ritual Serenité</h5>
+                        <p class="servi-desc">Massagem relaxante para dissolver tensões e restaurar a harmonia do corpo.</p>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="servi-card">
+                        <img src="limpeza.png" alt="Purificação Lumina" loading="lazy" class="servi-img" />
+                        <h5 class="servi-title">Purificação Lumina</h5>
+                        <p class="servi-desc">Limpeza de pele profunda para brilho uniforme e toque aveludado.</p>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article class="servi-card">
+                        <img src="Dranagem Linfatica.png" alt="Sculpteur Élégance" loading="lazy" class="servi-img" />
+                        <h5 class="servi-title">Sculpteur Élégance</h5>
+                        <p class="servi-desc">Drenagem linfática com foco em leveza, contorno e bem‑estar.</p>
+                    </article>
+
+                    <!-- Card 4 -->
+                    <article class="servi-card">
+                        <img src="modeladora.png" alt="Silhouette Sculpt" loading="lazy" class="servi-img" />
+                        <h5 class="servi-title">Silhouette Sculpt</h5>
+                        <p class="servi-desc">Modeladora com técnicas precisas para definir e valorizar a silhueta.</p>
+                    </article>
+
+                    <!-- Card 5 -->
+                    <article class="servi-card">
+                        <img src="pump.png" alt="Lifting Contour Intense" loading="lazy" class="servi-img" />
+                        <h5 class="servi-title">Lifting Contour Intense</h5>
+                        <p class="servi-desc">Efeito “lift” visível para contornos mais firmes e definidos.</p>
+                    </article>
+
+                    <!-- Card 6 -->
+                    <article class="servi-card">
+                        <img src="endermo.png" alt="Endermologie Sublime" loading="lazy" class="servi-img" />
+                        <h5 class="servi-title">Endermologie Sublime</h5>
+                        <p class="servi-desc">Endermo para textura mais lisa e estímulo profundo.</p>
+                    </article>
+
+                    <!-- Card 7 -->
+                    <article class="servi-card">
+                        <img src="manta.png" alt="Therma Spa Détox" loading="lazy" class="servi-img" />
+                        <h5 class="servi-title">Therma Spa Détox</h5>
+                        <p class="servi-desc">Manta térmica para relaxamento completo e detox suave.</p>
+                    </article>
+
+                    <!-- Card 8 -->
+                    <article class="servi-card">
+                        <img src="esfoliacao.png" alt="Peeling de Cristaux" loading="lazy" class="servi-img" />
+                        <h5 class="servi-title">Peeling de Cristaux</h5>
+                        <p class="servi-desc">Esfoliação precisa para renovação imediata do toque e da luz.</p>
+                    </article>
+
+                    <!-- Card 9 -->
+                    <article class="servi-card">
+                        <img src="elso+hid.png" alt="Hydra Glow Touch" loading="lazy" class="servi-img" />
+                        <h5 class="servi-title">Hydra Glow Touch</h5>
+                        <p class="servi-desc">Esfoliação com hidratação para pele viçosa e sedosa.</p>
+                    </article>
+
+                    <!-- Card 10 -->
+                    <article class="servi-card">
+                        <img src="Corrente.png" alt="BioSculpt Pulse" loading="lazy" class="servi-img" />
+                        <h5 class="servi-title">BioSculpt Pulse</h5>
+                        <p class="servi-desc">Corrente russa para estímulo muscular e firmeza.</p>
+                    </article>
+
+                    <!-- Card 11 -->
+                    <article class="servi-card">
+                        <img src="eletro.png" alt="Electra Shape Studio" loading="lazy" class="servi-img" />
+                        <h5 class="servi-title">Electra Shape Studio</h5>
+                        <p class="servi-desc">Eletrolipólise focada em contorno e definição.</p>
+                    </article>
+
+                    <!-- Card 12 -->
+                    <article class="servi-card">
+                        <img src="hidra.png" alt="Velvet Skin Ritual" loading="lazy" class="servi-img" />
+                        <h5 class="servi-title">Velvet Skin Ritual</h5>
+                        <p class="servi-desc">Hidratação intensa para maciez e conforto imediato.</p>
+                    </article>
+                </div>
+
+                <button class="servi-btn servi-next" aria-label="Próximo" type="button">
+          <span aria-hidden="true">›</span>
+        </button>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Seção: Produtos (carrossel) -->
+    <!-- Seção: Produtos (carrossel) -->
+    <section id="produtos" class="py-5" aria-label="Produtos">
+        <div class="container">
+            <h2 class="text-center mb-3">Produtos</h2>
+            <p class="text-center mb-4">Cosméticos selecionados com ativos potentes para rotina diária de cuidado.</p>
+
+            <div class="prod-carousel" aria-label="Carrossel de produtos">
+                <button class="prod-btn prod-prev" aria-label="Anterior" type="button"><span aria-hidden="true">‹</span></button>
+
+                <div class="prod-track" id="prodTrack">
+                    <article class="prod-card">
+                        <img src="Hidratante.png" alt="Hidratante Facial Natural" loading="lazy" class="prod-img">
+                        <h6 class="prod-title">Hydra Velvet</h6>
+                        <p class="prod-desc">Hidratante facial com vitaminas e extratos botânicos.</p>
+                    </article>
+                    <article class="prod-card">
+                        <img src="oleo.png" alt="Óleo Corporal Aromático" loading="lazy" class="prod-img">
+                        <h6 class="prod-title">Aroma Body Oil</h6>
+                        <p class="prod-desc">Hidratação profunda e toque sedoso com aroma suave.</p>
+                    </article>
+                    <article class="prod-card">
+                        <img src="serum.png" alt="Sérum Rejuvenescedor" loading="lazy" class="prod-img">
+                        <h6 class="prod-title">Lumina Sérum</h6>
+                        <p class="prod-desc">Antioxidantes para viço e uniformização do tom.</p>
+                    </article>
+                    <article class="prod-card">
+                        <img src="tonico.png" alt="Tônico Revitalizante" loading="lazy" class="prod-img">
+                        <h6 class="prod-title">Pure Tone</h6>
+                        <p class="prod-desc">Revitaliza e ajuda no equilíbrio da pele.</p>
+                    </article>
+                    <article class="prod-card">
+                        <img src="mascara.png" alt="Máscara Nutritiva" loading="lazy" class="prod-img">
+                        <h6 class="prod-title">Nutrimask</h6>
+                        <p class="prod-desc">Nutrição intensa e maciez imediata.</p>
+                    </article>
+                </div>
+
+                <button class="prod-btn prod-next" aria-label="Próximo" type="button"><span aria-hidden="true">›</span></button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Depoimentos -->
+    <section id="depoimentos" class="depoimentos text-center">
+        <h2>Depoimentos</h2>
+        <div class="depoimento text-white">
+            <img src="Dep1.png" alt="Foto de Andreia Silva" />
+            <p>"O atendimento foi excelente e<br>o resultado superou minhas expectativas!"</p>
+            <p><strong>Andreia Silva</strong></p>
+        </div>
+        <div class="depoimento text-white">
+            <img src="Dep2.png" alt="Foto de Vitória Régia Ribeiro" />
+            <p>"O resultado superou minhas expectativas e saí me sentindo renovada por dentro e por fora."</p>
+            <p><strong>Vitória Ribeiro</strong></p>
+        </div>
+        <div class="depoimento text-white">
+            <img src="Dep3.png" alt="Foto de Ana Lúcia Nicastri" />
+            <p>"Desde o primeiro atendimento, senti confiança e cuidado em cada detalhe. O ambiente é acolhedor."</p>
+            <p><strong>Ana Lúcia</strong></p>
+        </div>
+    </section>
+
+    <!-- Sobre Nós — hero premium -->
+    <section id="sobre" aria-labelledby="sobre-title">
+        <div class="sobre-wrap">
+            <figure class="sobre-media com-logo" aria-hidden="true">
+                <!-- Ideal: use .webp otimizada -->
+                <img class="sobre-img" src="joiciane.png" alt="Profissional da Estética Radiante em ambiente de clínica" loading="lazy" width="900" height="1125">
+            </figure>
+
+            <div class="sobre-copy">
+                <h2 id="sobre-title">Sobre Nós</h2>
+                <p>
+                    Desde outubro de 2020, a Estética Radiante une protocolos modernos, acolhimento e resultados reais. Nosso propósito é elevar autoestima com segurança, higiene impecável e atenção a cada detalhe.
+                </p>
+
+                <ul class="sobre-pontos">
+                    <li>Equipamentos homologados e cosméticos selecionados</li>
+                    <li>Protocolos personalizados para cada objetivo</li>
+                    <li>Ambiente silencioso, higienizado e confortável</li>
+                </ul>
+
+                <div class="sobre-cta">
+                    <a class="btn btn-primary" href="https://wa.me/5511985425667" target="_blank" rel="noopener">
+          Agendar avaliação
+        </a>
+
+                    <div class="sobre-metas" aria-label="Nossas métricas">
+                        <div class="meta">
+                            <strong>+2.000</strong>
+                            <span>atendimentos</span>
+                        </div>
+                        <div class="meta">
+                            <strong>4,9★</strong>
+                            <span>avaliações</span>
+                        </div>
+                        <div class="meta">
+                            <strong>2020</strong>
+                            <span>desde</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+
+    <!-- Rodapé -->
+    <footer id="contato" class="rodape">
+        <div class="container-rodape">
+            <div class="coluna sobre">
+                <h3>Estética Radiante</h3>
+                <p>Beleza, bem-estar e resultados reais. Cuidamos de você com atenção em cada detalhe.</p>
+            </div>
+
+            <div class="coluna contato">
+                <h4>Contato</h4>
+                <p>
+                    📍
+                    <a href="https://www.google.com/maps?q=Rua+Duquesa+de+Goiás,+540,+São+Paulo,+SP" target="_blank" rel="noopener noreferrer" class="link-maps">
+            Rua Duquesa de Goiás, 540 – São Paulo/SP
+          </a>
+                </p>
+                <p>✉️ <a href="mailto:esteticaradiante1@gmail.com">esteticaradiante1@gmail.com</a></p>
+
+
+            </div>
+        </div>
+
+        <div class="copy text-center">
+            <p>© <span id="ano"></span> Estética Radiante – Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Botão flutuante do WhatsApp -->
+    <a class="fab-whats" href="https://wa.me/5511985425667" target="_blank" rel="noopener" aria-label="Abrir conversa no WhatsApp">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M20.52 3.48A11.94 11.94 0 0 0 12.04 0C5.46 0 .12 5.34.12 11.92c0 2.1.55 4.14 1.6 5.95L0 24l6.29-1.64a11.86 11.86 0 0 0 5.75 1.5h.01c6.58 0 11.92-5.34 11.92-11.92 0-3.18-1.25-6.17-3.45-8.46zM12.05 21.5a9.6 9.6 0 0 1-4.9-1.34l-.35-.2-3.73.97.99-3.64-.23-.38A9.55 9.55 0 0 1 2.4 11.9c0-5.32 4.33-9.65 9.65-9.65 2.57 0 4.99 1 6.81 2.82a9.55 9.55 0 0 1 2.83 6.82c-.01 5.34-4.35 9.61-9.64 9.61zm5.29-6.97c-.29-.15-1.74-.86-2.02-.95-.27-.09-.47-.14-.66.15s-.76.95-.93 1.13c-.17.19-.33.21-.6.07-.29-.14-1.23-.45-2.33-1.45-.86-.77-1.45-1.72-1.62-2.01-.17-.29-.02-.44.13-.6.14-.14.33-.37.47-.56.16-.19.22-.33.33-.55.11-.22.06-.41-.02-.58-.08-.18-.67-1.62-.93-2.2-.24-.58-.49-.5-.67-.51-.17-.01-.37-.01-.56-.01-.2 0-.53.08-.81.37-.28.29-1.07 1.04-1.07 2.54s1.1 2.93 1.25 3.13c.14.19 2.17 3.32 5.27 4.66.74.32 1.31.51 1.76.66.74.23 1.41.2 1.94.12.59-.09 1.74-.71 1.99-1.39.25-.68.25-1.26.17-1.39-.08-.13-.27-.2-.56-.34z"/>
+    </svg>
+        <span class="fab-whats__label">WhatsApp</span>
+    </a>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <script>
+        document.getElementById('ano').textContent = new Date().getFullYear();
+        $('.carousel').carousel({
+            interval: 5000,
+            ride: 'carousel'
+        });
+
+        // ====== Menu: toggle hambúrguer + slide ======
+        (function() {
+            var toggle = document.getElementById('menuToggle');
+            var list = document.getElementById('menu-list');
+            if (toggle && list) {
+                toggle.addEventListener('click', function() {
+                    var isOpen = toggle.classList.toggle('is-open');
+                    toggle.setAttribute('aria-expanded', String(isOpen));
+                    list.classList.toggle('open');
+                    list.setAttribute('aria-hidden', String(!list.classList.contains('open')));
+                });
+                // Fechar ao clicar em link (UX mobile)
+                list.querySelectorAll('a').forEach(function(a) {
+                    a.addEventListener('click', function() {
+                        if (window.matchMedia('(max-width: 768px)').matches) {
+                            toggle.classList.remove('is-open');
+                            toggle.setAttribute('aria-expanded', 'false');
+                            list.classList.remove('open');
+                            list.setAttribute('aria-hidden', 'true');
+                        }
+                    });
+                });
+            }
+            // Dropdown por toque no mobile
+            var dd = document.querySelector('.dropdown');
+            var btn = dd ? dd.querySelector('.dropbtn') : null;
+            if (btn && dd) {
+                btn.addEventListener('click', function(e) {
+                    if (window.matchMedia('(max-width: 768px)').matches) {
+                        e.preventDefault();
+                        dd.classList.toggle('open');
+                        btn.setAttribute('aria-expanded', String(dd.classList.contains('open')));
+                    }
+                });
+            }
+        })();
+    </script>
+
+    <script>
+        // Serviços: botões prev/next controlam a rolagem do trilho
+        (function() {
+            var track = document.getElementById('serviTrack');
+            if (!track) return;
+            var prev = document.querySelector('.servi-prev');
+            var next = document.querySelector('.servi-next');
+
+            function scrollByAmount(dir) {
+                var amount = track.clientWidth * 0.92; // quase uma viewport de cards
+                track.scrollBy({
+                    left: dir * amount,
+                    behavior: 'smooth'
+                });
+            }
+            prev && prev.addEventListener('click', function() {
+                scrollByAmount(-1)
+            });
+            next && next.addEventListener('click', function() {
+                scrollByAmount(1)
+            });
+        })();
+    </script>
+    <script>
+        // Produtos: botões prev/next controlam o trilho
+        (function() {
+            var track = document.getElementById('prodTrack');
+            if (!track) return;
+            var prev = document.querySelector('.prod-prev');
+            var next = document.querySelector('.prod-next');
+
+            function scrollByAmount(dir) {
+                var amount = track.clientWidth * 0.92;
+                track.scrollBy({
+                    left: dir * amount,
+                    behavior: 'smooth'
+                });
+            }
+            prev && prev.addEventListener('click', function() {
+                scrollByAmount(-1)
+            });
+            next && next.addEventListener('click', function() {
+                scrollByAmount(1)
+            });
+        })();
+    </script>
+</body>
+
+</html>
