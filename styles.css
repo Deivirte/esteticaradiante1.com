@@ -895,3 +895,54 @@ body {
         animation: none!important
     }
 }
+
+
+/* ======= Corrige dropdown no mobile - não sobrepor outros itens ======= */
+
+@media (max-width:768px) {
+    /* faz o dropdown fluir dentro do menu (empurra para baixo) */
+    .menu>ul#menu-list .dropdown {
+        position: static;
+        /* garante fluxo normal */
+    }
+    .menu>ul#menu-list .dropdown .dropdown-content {
+        position: static;
+        /* não absoluta */
+        display: none;
+        /* controlado por .open (JS) */
+        background: transparent;
+        /* evita bloco branco cobrindo o menu */
+        box-shadow: none;
+        margin: 6px 0;
+        /* separa visualmente os itens */
+        border-radius: 10px;
+        padding: 0;
+        /* links controlam padding */
+        max-height: 220px;
+        /* se tiver muitos links, dá scroll */
+        overflow: auto;
+    }
+    .menu>ul#menu-list .dropdown.open .dropdown-content {
+        display: block;
+    }
+    /* estiliza os links do dropdown para ficarem legíveis em fundo escuro */
+    .menu>ul#menu-list .dropdown .dropdown-content a {
+        display: block;
+        padding: 10px 12px;
+        color: #fff;
+        /* branco para contraste com o fundo do menu */
+        background: rgba(255, 255, 255, 0.03);
+        /* leve destaque sem cobrir */
+        border-radius: 8px;
+        margin: 6px 4px;
+    }
+    .menu>ul#menu-list .dropdown .dropdown-content a:hover {
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+    }
+    /* garante que quando o menu expandir, o contêiner abra espaço suficiente */
+    .menu>ul#menu-list.open {
+        /* ajuste caso precise mais espaço que o max-height atual */
+        max-height: 640px;
+    }
+}
