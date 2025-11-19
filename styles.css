@@ -10,6 +10,15 @@
     --paper: #F5E9E7;
     --accent: #5A322A;
     --shadow: 0 4px 8px rgba(0, 0, 0, .15);
+    /* variações específicas para Serviços e Produtos (derivadas da paleta) */
+    --servi-bg: rgba(168, 111, 98, 0.12);
+    --servi-bd: rgba(168, 111, 98, 0.28);
+    --servi-title: #7a3f35;
+    --servi-desc: rgba(90, 50, 42, 0.95);
+    --prod-bg: rgba(212, 169, 159, 0.12);
+    --prod-bd: rgba(212, 169, 159, 0.28);
+    --prod-title: #5a322a;
+    --prod-desc: rgba(90, 50, 42, 0.85);
 }
 
 
@@ -138,16 +147,10 @@ body {
 
 /* ====== NAV ====== */
 
-
-/* container */
-
 .menu {
     width: min(1100px, 90%);
     margin: 0 auto 8px;
 }
-
-
-/* desktop list */
 
 .menu>ul#menu-list {
     display: flex;
@@ -159,9 +162,6 @@ body {
     border-radius: 12px;
     backdrop-filter: saturate(140%) blur(2px);
 }
-
-
-/* links and buttons */
 
 .menu .menu-link,
 .menu .dropbtn {
@@ -176,9 +176,6 @@ body {
     cursor: pointer;
 }
 
-
-/* hover / focus */
-
 .menu .menu-link:hover,
 .menu .dropbtn:hover,
 .menu .dropbtn:focus-visible {
@@ -187,19 +184,10 @@ body {
     outline: none;
 }
 
-
-/* remove any "pre-selected" styling */
-
-
-/* neutralize ancestor hover changing the button appearance */
-
 .menu .dropdown:hover .dropbtn {
     background: transparent;
     transform: none;
 }
-
-
-/* dropdown container - desktop */
 
 .menu .dropdown {
     position: relative;
@@ -238,7 +226,6 @@ body {
     width: var(--size);
     height: var(--size);
     display: none;
-    /* shown only on mobile */
     align-items: center;
     justify-content: center;
     border: none;
@@ -294,11 +281,9 @@ body {
 }
 
 @media (max-width:768px) {
-    /* show toggle */
     .menu-toggle {
         display: inline-flex
     }
-    /* make the list collapsible */
     .menu>ul#menu-list {
         position: relative;
         display: block;
@@ -327,7 +312,6 @@ body {
         color: #fff;
         font-weight: 700;
     }
-    /* dropdown content mobile: inline flow */
     .dropdown .dropdown-content {
         position: static;
         display: none;
@@ -413,9 +397,6 @@ body {
     color: #fff;
     opacity: 1
 }
-
-
-/* stars */
 
 .depoimentos .rating {
     grid-area: rating;
@@ -678,7 +659,7 @@ body {
 }
 
 
-/* cards */
+/* cards shared */
 
 .servi-card,
 .prod-card {
@@ -737,6 +718,64 @@ body {
 }
 
 
+/* ====== Seção-specific overrides (mantendo paleta, dando identidade diferente) ====== */
+
+.servi-card {
+    background: var(--servi-bg) !important;
+    border-color: var(--servi-bd) !important;
+    box-shadow: 0 6px 18px rgba(122, 63, 53, 0.06)
+}
+
+.prod-card {
+    background: var(--prod-bg) !important;
+    border-color: var(--prod-bd) !important;
+    box-shadow: 0 6px 18px rgba(212, 169, 159, 0.06)
+}
+
+.servi-title {
+    color: var(--servi-title) !important
+}
+
+.prod-title {
+    color: var(--prod-title) !important
+}
+
+.servi-desc {
+    color: var(--servi-desc) !important
+}
+
+.prod-desc {
+    color: var(--prod-desc) !important
+}
+
+.servi-btn {
+    background: rgba(168, 111, 98, 0.18);
+    border-color: var(--servi-bd);
+    color: #fff
+}
+
+.prod-btn {
+    background: rgba(212, 169, 159, 0.18);
+    border-color: var(--prod-bd);
+    color: #fff
+}
+
+#serviTrack::-webkit-scrollbar-thumb {
+    background: rgba(122, 63, 53, 0.45)
+}
+
+#prodTrack::-webkit-scrollbar-thumb {
+    background: rgba(90, 50, 42, 0.35)
+}
+
+@media (max-width:560px) {
+    .servi-card,
+    .prod-card {
+        color: #3b231f
+    }
+}
+
+
 /* ====== Footer ====== */
 
 .rodape {
@@ -746,6 +785,14 @@ body {
     text-align: center;
     box-shadow: 0 -6px 18px rgba(0, 0, 0, .25);
     border-top: 3px solid rgba(255, 255, 255, .1)
+}
+
+.py-5 {
+    background-color: #E7C3BD;
+}
+
+.depoimentos {
+    background-color: #E7C3BD;
 }
 
 .container-rodape {
@@ -900,39 +947,28 @@ body {
 /* ======= Corrige dropdown no mobile - não sobrepor outros itens ======= */
 
 @media (max-width:768px) {
-    /* faz o dropdown fluir dentro do menu (empurra para baixo) */
     .menu>ul#menu-list .dropdown {
         position: static;
-        /* garante fluxo normal */
     }
     .menu>ul#menu-list .dropdown .dropdown-content {
         position: static;
-        /* não absoluta */
         display: none;
-        /* controlado por .open (JS) */
         background: transparent;
-        /* evita bloco branco cobrindo o menu */
         box-shadow: none;
         margin: 6px 0;
-        /* separa visualmente os itens */
         border-radius: 10px;
         padding: 0;
-        /* links controlam padding */
         max-height: 220px;
-        /* se tiver muitos links, dá scroll */
         overflow: auto;
     }
     .menu>ul#menu-list .dropdown.open .dropdown-content {
         display: block;
     }
-    /* estiliza os links do dropdown para ficarem legíveis em fundo escuro */
     .menu>ul#menu-list .dropdown .dropdown-content a {
         display: block;
         padding: 10px 12px;
         color: #fff;
-        /* branco para contraste com o fundo do menu */
         background: rgba(255, 255, 255, 0.03);
-        /* leve destaque sem cobrir */
         border-radius: 8px;
         margin: 6px 4px;
     }
@@ -940,9 +976,7 @@ body {
         background: rgba(255, 255, 255, 0.08);
         color: #fff;
     }
-    /* garante que quando o menu expandir, o contêiner abra espaço suficiente */
     .menu>ul#menu-list.open {
-        /* ajuste caso precise mais espaço que o max-height atual */
         max-height: 640px;
     }
 }
